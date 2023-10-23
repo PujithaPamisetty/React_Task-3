@@ -1,60 +1,36 @@
-import React, { Component } from "react";
-import "./App.css";
-class ColorPicker extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isColorListVisible: false,
-      selectedColor: null,
-    };
-  }
-  toggleColorList = () => {
-    this.setState((prevState) => ({
-      isColorListVisible: !prevState.isColorListVisible,
-    }));
-  };
-  handleColorClick = (color) => {
-    this.setState({
-      selectedColor: color,
-      isColorListVisible: false,
-    });
-  };
-  render() {
-    const { colors } = this.props;
-    const { isColorListVisible, selectedColor } = this.state;
-    return (
-      <div>
-        {isColorListVisible && (
-          <div className="color-list">
-            {colors.map((color, index) => (
-              <div
-                key={index}
-                className="color-square"
-                style={{
-                  backgroundColor: color,
-                  boxShadow: `0px 0px 5px rgba(0, 0, 0, 0.5)`,
-                }}
-                onClick={() => this.handleColorClick(color)}
-              ></div>
-            ))}
+import React from "react";
+import ColorPicker from "./ColorPicker";
+import "./Colorpicker.css";
+const App = () => {
+  const colors = [
+    "red",
+    "lime",
+    "blue",
+    "yellow",
+    "magenta",
+    "cyan",
+    "orange",
+    "purple",
+    "pink",
+    "green",
+    "tomato",
+    "turquoise",
+    "brown",
+    "orange",
+    "steelblue",
+    "gold",
+  ];
+  return (
+    <center>
+      <div className="layer1">
+        <h1>Color Picker</h1>
+        <div className="layer2">
+          <div id="id1">
+            <ColorPicker colors={colors} />
           </div>
-        )}
-        <br></br>
-        <button
-          className="button"
-          onClick={this.toggleColorList}
-          style={{ backgroundColor: selectedColor }}
-        >
-          Pick a color
-        </button>
-        {selectedColor && (
-          <div className="selected-color">
-            Selected Color:{" "}
-            <span style={{ color: "red" }}>{selectedColor}</span>
-          </div>
-        )}
+        </div>
       </div>
-    );
-  }
-}
-export default ColorPicker;
+    </center>
+  );
+};
+export default App;
